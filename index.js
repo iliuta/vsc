@@ -5,10 +5,13 @@ if (process.argv.length != 3) {
     process.exit(1);
 }
 
-var xspeedIt = require('./lib/xspeedit')(process.argv[2]);
+var articlesStr = process.argv[2];
 
-var packs = xspeedIt.pack();
+require('./lib/xspeedit')(articlesStr, function (xspeedIt) {
+    var packs = xspeedIt.pack(function (packs) {
+        console.log(`${packs.join('/')} => ${packs.length} cartons utilisés`);
+    });
+});
 
-console.log(`${packs.join('/')} => ${packs.length} cartons utilisés`);
-process.exit();
+
 

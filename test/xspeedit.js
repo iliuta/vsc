@@ -18,11 +18,13 @@ function checkArticlesFromPacksAgainstInput(packs, articlesStr) {
  * A partir d'une chaine d'articles, crée les cartons et vérifie le tout contre un résultat attendu et un nb de cartons attendu.
  */
 function packAndCheckResults(articlesStr, expectedPackStr, packNb) {
-    var xspeedit = require('../lib/xspeedit')(articlesStr);
-    var packs = xspeedit.pack();
-    assert.equal(packs.length, packNb);
-    checkArticlesFromPacksAgainstInput(packs, articlesStr);
-    assert.equal(packs.join('/'), expectedPackStr);
+    require('../lib/xspeedit')(articlesStr, function (xspeedit) {
+        xspeedit.pack(function (packs) {
+            assert.equal(packs.length, packNb);
+            checkArticlesFromPacksAgainstInput(packs, articlesStr);
+            assert.equal(packs.join('/'), expectedPackStr);
+        });
+    });
 }
 
 
