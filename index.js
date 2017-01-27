@@ -10,5 +10,4 @@ var xspeedIt = require('./lib/xspeedit')(process.argv[2]);
 var packs = xspeedIt.pack();
 
 console.log(`${packs.join('/')} => ${packs.length} cartons utilisés`);
-process.exit();
 
