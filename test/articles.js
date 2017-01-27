@@ -29,7 +29,7 @@ describe('ArticlesBTree', function () {
         var articlesStr = '163841689525773';
         var tree = require('../lib/articles').create(articlesStr);
         var articles = [];
-        tree.forEachReverse(function(article){
+        tree.forEach(function(article){
             articles.push(article);
         });
         assert.equal(articles.join(''), '988776655433211');
