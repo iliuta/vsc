@@ -8,7 +8,7 @@ if (process.argv.length != 3) {
 var articlesStr = process.argv[2];
 
 require('./lib/xspeedit')(articlesStr, function (xspeedIt) {
-    var packs = xspeedIt.pack(function (packs) {
+    xspeedIt.pack(function (packs) {
         console.log(`${packs.join('/')} => ${packs.length} cartons utilisés`);
     });
 });
