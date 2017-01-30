@@ -33,14 +33,18 @@ describe('Xspeedit', function () {
             var xspeedit = require('../lib/xspeedit')('');
         } catch (e) {
             assert.equal(e.message, 'Il faut au moins un article.');
+            return;
         }
+        assert.ok(false, 'Exception required');
     });
     it('should throw error when created with characters instead of digits', function () {
         try {
             var xspeedit = require('../lib/xspeedit')('1634abcd5z2');
         } catch (e) {
             assert.equal(e.message, 'Seulement des chiffres en entrée.');
+            return;
         }
+        assert.ok(false, 'Exception required');
     });
     it('should return 8 packs instead of 10', function () {
         packAndCheckResults('163841689525773', '91/82/81/73/73/64/6/55', 8);
