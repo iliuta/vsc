@@ -9,7 +9,9 @@ describe('ArticlesBTree', function () {
             require('../lib/articles').create(articlesStr);
         } catch (e) {
             assert.equal(e.message, 'Seulement des chiffres en entrée.');
+            return;
         }
+        assert.ok(false, 'Exception required');
     });
     
 

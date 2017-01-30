@@ -31,18 +31,18 @@ function packAndCheckResults(articlesStr, expectedPackStr, packNb) {
 
 describe('Xspeedit', function () {
     it('should throw error when created with empty input', function () {
-        try {
-            var xspeedit = require('../lib/xspeedit')('');
-        } catch (e) {
+        var xspeedit = require('../lib/xspeedit')('', function () {
+            assert.ok(false, 'Exception required');
+        }, function (err) {
             assert.equal(e.message, 'Il faut au moins un article.');
-        }
+        });
     });
     it('should throw error when created with characters instead of digits', function () {
-        try {
-            var xspeedit = require('../lib/xspeedit')('1634abcd5z2');
-        } catch (e) {
-            assert.equal(e.message, 'Seulement des chiffres en entrée.');
-        }
+        require('../lib/xspeedit')('1634abcd5z2', function (xspeedid) {
+            assert.ok(false, 'Exception required');
+        }, function (err) {
+            assert.equal(err.message, 'Seulement des chiffres en entrée.');
+        });
     });
     it('should return 8 packs instead of 10', function () {
         packAndCheckResults('163841689525773', '91/82/81/73/73/64/6/55', 8);

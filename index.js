@@ -7,11 +7,15 @@ if (process.argv.length != 3) {
 
 var articlesStr = process.argv[2];
 
-require('./lib/xspeedit')(articlesStr, function (xspeedIt) {
-    xspeedIt.pack(function (packs) {
-        console.log(`${packs.join('/')} => ${packs.length} cartons utilisés`);
+require('./lib/xspeedit')(articlesStr,
+    function (xspeedIt) {
+        xspeedIt.pack(function (packs) {
+            console.log(`${packs.join('/')} => ${packs.length} cartons utilisés`);
+        });
+    },
+    function (err) {
+        console.log(err.message);
     });
-});
 
 
 
